@@ -15,3 +15,15 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$(function(){
+	 $('.datepicker').datepicker({
+    
+             weekStart:1,
+    
+             color: '{color}'
+    
+    });
+    
+})
