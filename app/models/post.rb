@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 
 
   def date=(date)
-    date = Date.strptime(date, '%m/%d/%Y') if date.is_a?(String)
+    date = Date.strptime(date, '%d.%m.%Y') if date.is_a?(String)
     write_attribute(:date, date)
   end
 

@@ -21,6 +21,7 @@ $(function(){
 	 $('.datepicker').datepicker({
     
              weekStart:1,
+             format: "dd.mm.yyyy",
     
              color: '{color}'
     

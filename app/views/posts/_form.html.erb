@@ -15,7 +15,7 @@
 
       <div class="field form-group">
          <%= f.label :date, 'Дата' %><br>
-         <input class="datepicker form-control" name='post[date]' type="text"/>
+         <input value='<%=(@post.date || Date.today).strftime('%d.%m.%Y')%>' class="datepicker form-control" name='post[date]' type="text"/>
       </div>
       <div class="field form-group">
         <%= f.label :title,'Теги' %><br>
