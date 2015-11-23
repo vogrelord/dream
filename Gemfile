@@ -15,6 +15,7 @@ group :development do
   gem 'spring'
 end
 gem 'bootstrap-sass'
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'high_voltage'
 gem 'omniauth'
 gem 'omniauth-facebook'

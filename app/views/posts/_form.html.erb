@@ -18,6 +18,10 @@
          <input class="datepicker form-control" name='post[date]' type="text"/>
       </div>
       <div class="field form-group">
+        <%= f.label :title,'Теги' %><br>
+        <%= f.text_field :tag_list, :class=>'form-control'%>
+      </div>
+      <div class="field form-group">
         <%= f.label :title,'Название' %><br>
         <%= f.text_field :title, :class=>'form-control'%>
       </div>

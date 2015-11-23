@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where(:user_id => current_user.id).order('DATE desc')
   end
 
   # GET /posts/1
@@ -20,6 +20,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+  end
+
+  def by_tag
+    @posts = Post.tagged_with(params[:tag]).order('DATE desc')
+    render :index
   end
 
   # POST /posts
@@ -71,6 +76,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:date, :title, :description, :user_id)
+      params.require(:post).permit(:date, :title, :description,  :tag_list)
     end
 end
