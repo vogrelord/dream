@@ -1,21 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h3>
-   <%=@post.title %>
-</h3>
 
-<div class='label label-info'>
-	<%= @post.date.strftime('%d.%m.%Y') %>
-</div>
+<h3>
+	<%= @post.date.strftime('%d.%m.%Y') %> 
+	<% if can? :delete, @post %>
+		<%= link_to("", post_path(@post), :data => { :confirm => "Уверены?" }, :method => :delete, :class => 'fa fa-trash') %>
+	<% end %>
+	<% if can? :edit, @post %>
+		<%= link_to("", edit_post_path(@post), :class => 'fa fa-pencil') %>
+	<% end %>
+</h3>
 
 
 <p>
   <% @post.tag_list.each do |tag| %>
-  	<a href='/posts/tags/<%=tag%>'>#<%= tag%></a>
+  	<a class='link' href='/posts/tags/<%=tag%>'>#<%= tag%></a>
   <%end%>
 </p>
 
 
-<p>
-  <%= @post.description %>
+<p style='font-size: 22px; white-space: nowrap;'>
+  	<%= @post.description %>
 </p>

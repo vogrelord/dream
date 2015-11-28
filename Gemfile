@@ -20,6 +20,7 @@ gem 'high_voltage'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rails_admin'
+gem 'cancan'
 gem 'devise'
 gem 'pg'
 group :development do

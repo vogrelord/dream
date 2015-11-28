@@ -1,21 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Добавить сон', new_post_path, :class=>'btn btn-default' %>
-
-<% @posts.each do |post| %>
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading">
-          <span><%= post.date.strftime('%d.%m.%Y')  %></span>
-          <%= link_to post.title, post %>
-        </h4>
-        <p>
-          <% post.tag_list.each do |tag| %>
-            <a href='/posts/tags/<%=tag%>'>#<%= tag%></a>
-          <%end%>
-        </p>
-        <%= post.description %>
-      </div>
-    </div>
-<% end %>
+<div class='row'>
+  <div class='col-sm-8'>
+  <%= link_to 'Добавить сон', new_post_path, :class=>'btn btn-default' %>
+    <% @posts.each do |post| %>
+        <div class="media">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <%= link_to post.date.strftime('%d.%m.%Y') , post %>
+            </h4>
+            <p>
+              <%if post.is_private %>
+                <span class='label label-info'><span class='fa fa-key' title='Закрытый сон'></span></span>
+              <%end%>
+              <% post.tag_list.each do |tag| %>
+                <a class='link' href='/posts/tags/<%=tag%>'>#<%= tag%></a>
+              <%end%>
+            </p>
+            <%= post.description %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class='col-sm-4'>
+    <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, '/posts/tags/' +tag.name , :class => css_class+' link' %>
+    <% end %>
+  </div>
+</div>
 

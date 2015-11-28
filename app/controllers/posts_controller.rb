@@ -1,16 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.where(:user_id => current_user.id).order('DATE desc')
+    @tags = Post.tag_counts_on(:tags)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    authorize! :read, @post
   end
 
   # GET /posts/new
@@ -24,6 +27,7 @@ class PostsController < ApplicationController
 
   def by_tag
     @posts = Post.tagged_with(params[:tag]).order('DATE desc')
+    @tags = Post.tag_counts_on(:tags)
     render :index
   end
 
@@ -68,6 +72,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def tag_cloud
+    @tags = Post.tag_counts_on(:tags)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -76,6 +84,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:date, :title, :description,  :tag_list)
+      params.require(:post).permit(:is_private, :date, :title, :description,  :tag_list)
     end
 end
