@@ -20,5 +20,5 @@
 
 
 <p style='font-size: 22px;'>
-	<%= markdown(@post.description) %>
+	<%=markdown(@post.description).html_safe %>
 </p>

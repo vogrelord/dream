@@ -10,6 +10,10 @@ class PostsController < ApplicationController
     @tags = Post.tag_counts_on(:tags)
   end
 
+  def shop
+
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
