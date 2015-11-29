@@ -22,6 +22,8 @@ gem 'omniauth-facebook'
 gem 'rails_admin'
 gem 'cancan'
 gem 'devise'
+gem 'redcarpet'
+gem 'coderay'
 gem 'pg'
 group :development do
   gem 'better_errors'
